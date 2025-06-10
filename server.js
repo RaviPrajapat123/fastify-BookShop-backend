@@ -6,6 +6,8 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken"
 import { authenticateToken } from './authenticateToken.js';
 import { ObjectId } from 'mongodb';
+import dotenv from 'dotenv'
+dotenv.config()
 
 // import { json } from 'stream/consumers';
 const fastify = Fastify({ logger: true });

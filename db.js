@@ -18,7 +18,6 @@
 
 
 
-// ESM
 import fastifyPlugin from 'fastify-plugin'
 import fastifyMongo from '@fastify/mongodb'
 
@@ -27,8 +26,13 @@ import fastifyMongo from '@fastify/mongodb'
  * @param {Object} options
  */
 async function dbConnector(fastify, options) {
+  const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/BookShop'
+  
   fastify.register(fastifyMongo, {
-    url: process.env.MONGODB_URI || 'mongodb://localhost:27017/BookShop'
+    url: dbUrl,
+    forceClose: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   })
 }
 

@@ -34,7 +34,7 @@ export async function authenticateToken(request, reply) {
       return reply.status(401).send({ message: 'Authentication token required' });
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => { // यहां बदलाव किया
       if (err) {
         return reply.status(403).send({ message: 'Token expired. Please sign in again' });
       }

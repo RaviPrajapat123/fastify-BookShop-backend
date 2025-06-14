@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import Fastify from 'fastify'
 import cors from '@fastify/cors';
 import db from './db.js';
@@ -6,8 +8,6 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken"
 import { authenticateToken } from './authenticateToken.js';
 import { ObjectId } from 'mongodb';
-import dotenv from 'dotenv'
-dotenv.config()
 
 // import { json } from 'stream/consumers';
 const fastify = Fastify({ logger: true });
@@ -814,8 +814,10 @@ fastify.put('/update-status/:id', {
   }
 });
 
+const port = parseInt(process.env.PORT || '3000', 10);
+const host = '0.0.0.0';
 
-fastify.listen({ port: 3000 }, (err, addr) => {
+fastify.listen({ port,host }, (err, addr) => {
   if (err) {
     fastify.log.error(err);
     process.exit(1);

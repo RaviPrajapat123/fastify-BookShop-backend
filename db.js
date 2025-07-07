@@ -28,8 +28,7 @@ async function dbConnector(fastify, options) {
   fastify.register(fastifyMongo, {
     url: `${dbUrl}/${dbName}`,
     forceClose: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+    
   });
 }
 

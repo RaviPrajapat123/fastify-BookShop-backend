@@ -16,12 +16,14 @@ fastify.register(cors, {
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS',"PUT"], 
 });
 
-
+const client = new MongoClient(process.env.MONGO_URI);
+await client.connect();
 await fastify.register(db);
-await fastify.ready(); 
-const User = fastify.mongo.db.collection('User');
-const Book=fastify.mongo.db.collection("Book")
-const orderCollection = fastify.mongo.db.collection('orders');
+
+const db = client.db("studentDB"); 
+const User = db.collection('User');
+const Book=db.collection("Book")
+const orderCollection = db.collection('orders');
 
 
 const yupOptions = {

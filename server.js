@@ -2,7 +2,8 @@ import dotenv from 'dotenv'
 dotenv.config()
 import Fastify from 'fastify'
 import cors from '@fastify/cors';
-import db from './db.js';
+// import db from './db.js';
+import { MongoClient } from "mongodb";
 import * as yup from 'yup';
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken"
@@ -16,11 +17,11 @@ fastify.register(cors, {
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS',"PUT"], 
 });
 
-const client = new MongoClient(process.env.MONGO_URI);
+const client = new MongoClient(process.env.DB_URL);
 await client.connect();
-await fastify.register(db);
+// await fastify.register(db);
 
-const db = client.db("studentDB"); 
+const db = client.db("BookShop"); 
 const User = db.collection('User');
 const Book=db.collection("Book")
 const orderCollection = db.collection('orders');

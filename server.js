@@ -814,17 +814,10 @@ fastify.put('/update-status/:id', {
   }
 });
 
-const port = parseInt(process.env.PORT || '3000', 10);
-const host = '0.0.0.0';
 
-fastify.listen({ port,host }, (err, addr) => {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-  fastify.log.info(`Server run at ${addr}`);
+fastify.listen({ port: process.env.PORT || 3000, host: "0.0.0.0" }, () => {
+  console.log("✅ Server running...");
 });
-
 
 
 

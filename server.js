@@ -18,7 +18,7 @@ fastify.register(cors, {
 
 
 await fastify.register(db);
-
+await fastify.ready(); 
 const User = fastify.mongo.db.collection('User');
 const Book=fastify.mongo.db.collection("Book")
 const orderCollection = fastify.mongo.db.collection('orders');
